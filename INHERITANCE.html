@@ -1,5 +1,4 @@
-
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,395 +9,163 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-mono { font-family: 'Fira Code', monospace; }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container { height: 350px; }
-        }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 300px; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
         .dna-scroll::-webkit-scrollbar { height: 6px; }
-        .dna-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
         .dna-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-
         textarea { resize: vertical; min-height: 80px; }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800 flex flex-col min-h-screen">
 
-    <!-- Navigation -->
     <nav class="bg-white border-b border-stone-200 shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-teal-700">🧬 GCSE BioLab</span>
-                </div>
-                <div class="flex space-x-1 md:space-x-4 items-center" id="nav-container">
-                    <button onclick="app.navigate('home')" class="nav-btn px-3 py-2 rounded-md text-xs md:text-sm font-medium hover:bg-stone-100 transition-colors" data-target="home">Home</button>
-                    <button onclick="app.navigate('skink')" class="nav-btn px-3 py-2 rounded-md text-xs md:text-sm font-medium hover:bg-stone-100 transition-colors" data-target="skink">1. Variation</button>
-                    <button onclick="app.navigate('cf')" class="nav-btn px-3 py-2 rounded-md text-xs md:text-sm font-medium hover:bg-stone-100 transition-colors" data-target="cf">2. Inheritance</button>
-                    <button onclick="app.navigate('moth')" class="nav-btn px-3 py-2 rounded-md text-xs md:text-sm font-medium hover:bg-stone-100 transition-colors" data-target="moth">3. Selection</button>
+                <div class="flex items-center"><span class="text-xl font-bold text-teal-700">🧬 GCSE BioLab</span></div>
+                <div class="flex space-x-1 md:space-x-4 items-center">
+                    <button onclick="app.navigate('home')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:bg-stone-100" data-target="home">Home</button>
+                    <button onclick="app.navigate('skink')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:bg-stone-100" data-target="skink">1. Variation</button>
+                    <button onclick="app.navigate('cf')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:bg-stone-100" data-target="cf">2. Inheritance</button>
+                    <button onclick="app.navigate('moth')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:bg-stone-100" data-target="moth">3. Selection</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow max-w-6xl mx-auto px-4 py-8 w-full">
-        
-        <!-- HOME VIEW -->
         <div id="view-home" class="fade-in space-y-12">
             <div class="text-center space-y-4 max-w-3xl mx-auto mt-10">
-                <p class="text-teal-600 font-bold tracking-widest uppercase text-sm">Hey Mahi!</p>
-                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Heredity, Variation & Evolution</h1>
-                <p class="text-lg text-stone-600">
-                    This interactive GCSE workbook will guide you through the core concepts of genetics. Explore the labs, analyze the data, and complete the investigation logs to test your knowledge.
-                </p>
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Heredity, Variation & Evolution</h1>
+                <p class="text-lg text-stone-600">Explore the labs, analyze the data, and complete the investigation logs.</p>
+                <button onclick="app.downloadProgress()" class="mt-4 px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-semibold text-sm">📥 Download All My Progress (.txt)</button>
             </div>
-
             <div class="grid md:grid-cols-3 gap-6 mt-12">
-                <div onclick="app.navigate('skink')" class="bg-white rounded-xl shadow-md border border-stone-200 p-6 hover:shadow-lg transition-all cursor-pointer group hover:-translate-y-1">
+                <div onclick="app.navigate('skink')" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all cursor-pointer">
                     <div class="w-12 h-12 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mb-4 text-2xl">🦎</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">Variation & Mutation</h3>
-                    <p class="text-sm text-stone-600 mb-4">Study the Blue-Tailed Skink to understand how DNA changes create new phenotypes.</p>
-                    <span class="text-teal-600 text-sm font-semibold group-hover:underline">Start Case 1 &rarr;</span>
+                    <h3 class="text-xl font-bold mb-2">Variation & Mutation</h3>
                 </div>
-
-                <div onclick="app.navigate('cf')" class="bg-white rounded-xl shadow-md border border-stone-200 p-6 hover:shadow-lg transition-all cursor-pointer group hover:-translate-y-1">
+                <div onclick="app.navigate('cf')" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all cursor-pointer">
                     <div class="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4 text-2xl">🧬</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">Genetic Inheritance</h3>
-                    <p class="text-sm text-stone-600 mb-4">Predict offspring genotypes and phenotypes using the Cystic Fibrosis simulator.</p>
-                    <span class="text-indigo-600 text-sm font-semibold group-hover:underline">Start Case 2 &rarr;</span>
+                    <h3 class="text-xl font-bold mb-2">Genetic Inheritance</h3>
                 </div>
-
-                <div onclick="app.navigate('moth')" class="bg-white rounded-xl shadow-md border border-stone-200 p-6 hover:shadow-lg transition-all cursor-pointer group hover:-translate-y-1">
+                <div onclick="app.navigate('moth')" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all cursor-pointer">
                     <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mb-4 text-2xl">🦋</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">Natural Selection</h3>
-                    <p class="text-sm text-stone-600 mb-4">Analyze the Peppered Moth population to see evolution driven by industrial change.</p>
-                    <span class="text-amber-600 text-sm font-semibold group-hover:underline">Start Case 3 &rarr;</span>
+                    <h3 class="text-xl font-bold mb-2">Natural Selection</h3>
                 </div>
             </div>
         </div>
 
-        <!-- SKINK VIEW -->
         <div id="view-skink" class="hidden fade-in space-y-8">
-            <header class="border-b border-stone-200 pb-6">
-                <div class="flex items-center space-x-3 mb-2">
-                    <span class="px-2 py-1 bg-teal-100 text-teal-700 text-xs font-bold rounded">CASE STUDY 1</span>
-                    <h2 class="text-3xl font-bold text-slate-900">The Blue-Tailed Skink</h2>
-                </div>
-                <p class="text-stone-600 max-w-4xl">Focus: DNA mutation, variation, and the impact of the environment on survival.</p>
-            </header>
-
+            <header class="border-b pb-6"><h2 class="text-3xl font-bold">The Blue-Tailed Skink</h2></header>
             <div class="grid lg:grid-cols-2 gap-8">
                 <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                        <h3 class="text-lg font-semibold text-teal-800 mb-3">🧬 Virtual Sequencing Lab</h3>
-                        <p class="text-xs text-stone-500 mb-3 uppercase font-bold tracking-wider">DNA Segment Comparison</p>
-                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto dna-scroll font-mono text-sm">
-                            <div class="mb-3">
-                                <span class="text-blue-400 text-[10px] block mb-1">Mainland Allele (T)</span>
-                                <code class="text-white tracking-[0.3em]">TAC-GGC-<span class="text-green-400 underline underline-offset-4">T</span>TA-GCT</code>
-                            </div>
-                            <div>
-                                <span class="text-stone-400 text-[10px] block mb-1">Island Allele (t)</span>
-                                <code class="text-white tracking-[0.3em]">TAC-GGC-<span class="text-red-500 underline underline-offset-4">A</span>TA-GCT</code>
-                            </div>
-                        </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border"><h3 class="font-bold mb-3">🧬 Virtual Sequencing Lab</h3>
+                        <div class="bg-slate-900 rounded-md p-4 font-mono text-sm text-white">Mainland: TAC-GGC-TTA-GCT<br>Island: TAC-GGC-ATA-GCT</div>
                     </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                        <h3 class="text-lg font-semibold text-teal-800 mb-3">📊 Population Frequency</h3>
-                        <div class="mb-4">
-                            <label class="text-xs font-bold text-stone-500 mb-1 block">SELECT ENVIRONMENT</label>
-                            <select id="skink-env-selector" class="w-full p-2 border border-stone-300 rounded bg-stone-50 text-sm">
-                                <option value="mainland">Mainland (High Bird Predation)</option>
-                                <option value="island">Island (High Snake Predation)</option>
-                            </select>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="skinkChart"></canvas>
-                        </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border">
+                        <select id="skink-env-selector" class="w-full p-2 border rounded mb-4">
+                            <option value="mainland">Mainland (High Bird Predation)</option>
+                            <option value="island">Island (High Snake Predation)</option>
+                        </select>
+                        <div class="chart-container"><canvas id="skinkChart"></canvas></div>
                     </div>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg border border-stone-200 shadow-inner overflow-y-auto max-h-[800px]">
-                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">📝 Investigation Log</h3>
-                    <div class="space-y-8" id="skink-questions"></div>
-                </div>
+                <div class="bg-white p-6 rounded-lg border shadow-inner"><h3 class="text-xl font-bold mb-6">📝 Investigation Log</h3><div class="space-y-8" id="skink-questions"></div></div>
             </div>
         </div>
 
-        <!-- CF VIEW -->
         <div id="view-cf" class="hidden fade-in space-y-8">
-            <header class="border-b border-stone-200 pb-6">
-                <div class="flex items-center space-x-3 mb-2">
-                    <span class="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded">CASE STUDY 2</span>
-                    <h2 class="text-3xl font-bold text-slate-900">Cystic Fibrosis Inheritance</h2>
-                </div>
-                <p class="text-stone-600 max-w-4xl">Focus: Recessive alleles, Punnett squares, and predicting genetic risks.</p>
-            </header>
-
+            <header class="border-b pb-6"><h2 class="text-3xl font-bold">Cystic Fibrosis Inheritance</h2></header>
             <div class="grid lg:grid-cols-2 gap-8">
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">🧮 Offspring Calculator</h3>
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <label class="text-[10px] font-bold text-stone-500 uppercase">Father</label>
-                                <select id="p1-genotype" class="w-full p-2 border border-stone-300 rounded bg-white text-sm">
-                                    <option value="CC">Healthy (CC)</option>
-                                    <option value="Cc" selected>Carrier (Cc)</option>
-                                    <option value="cc">Affected (cc)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-[10px] font-bold text-stone-500 uppercase">Mother</label>
-                                <select id="p2-genotype" class="w-full p-2 border border-stone-300 rounded bg-white text-sm">
-                                    <option value="CC">Healthy (CC)</option>
-                                    <option value="Cc" selected>Carrier (Cc)</option>
-                                    <option value="cc">Affected (cc)</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-                                <span class="block text-2xl font-bold text-green-700" id="res-healthy">25%</span>
-                                <span class="text-xs font-medium text-green-600">Homozygous Healthy</span>
-                            </div>
-                            <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
-                                <span class="block text-2xl font-bold text-indigo-700" id="res-carrier">50%</span>
-                                <span class="text-xs font-medium text-indigo-600">Heterozygous Carrier</span>
-                            </div>
-                            <div class="bg-red-50 p-4 rounded-lg border border-red-200 col-span-2">
-                                <span class="block text-2xl font-bold text-red-700" id="res-affected">25%</span>
-                                <span class="text-xs font-medium text-red-600">Affected (CF Disorder)</span>
-                            </div>
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <h3 class="font-bold mb-3">🧮 Offspring Calculator</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <select id="p1-genotype" class="p-2 border rounded"><option value="CC">Healthy (CC)</option><option value="Cc" selected>Carrier (Cc)</option><option value="cc">Affected (cc)</option></select>
+                        <select id="p2-genotype" class="p-2 border rounded"><option value="CC">Healthy (CC)</option><option value="Cc" selected>Carrier (Cc)</option><option value="cc">Affected (cc)</option></select>
                     </div>
-
-                    <div class="bg-slate-800 p-6 rounded-lg shadow-lg text-white">
-                        <h3 class="text-lg font-semibold mb-3 text-indigo-300">Molecular Basis</h3>
-                        <p class="text-sm text-slate-300 leading-relaxed italic">
-                            Cystic fibrosis is caused by a mutation in the CFTR gene. This gene codes for a protein that moves salt and water out of cells. When it's broken, thick mucus builds up in the lungs and digestive system.
-                        </p>
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                        <div class="bg-green-50 p-2 rounded border"><span id="res-healthy" class="block text-xl font-bold">25%</span>Healthy</div>
+                        <div class="bg-indigo-50 p-2 rounded border"><span id="res-carrier" class="block text-xl font-bold">50%</span>Carrier</div>
+                        <div class="bg-red-50 p-2 rounded border"><span id="res-affected" class="block text-xl font-bold">25%</span>Affected</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-4 text-center border-t pt-4">
+                        <div id="box-1" class="border p-2 font-mono bg-stone-50">?</div>
+                        <div id="box-2" class="border p-2 font-mono bg-stone-50">?</div>
+                        <div id="box-3" class="border p-2 font-mono bg-stone-50">?</div>
+                        <div id="box-4" class="border p-2 font-mono bg-stone-50">?</div>
                     </div>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg border border-stone-200 shadow-inner overflow-y-auto max-h-[800px]">
-                    <h3 class="text-xl font-bold text-slate-800 mb-6">📝 Investigation Log</h3>
-                    <div class="space-y-8" id="cf-questions"></div>
-                </div>
+                <div class="bg-white p-6 rounded-lg border shadow-inner"><h3 class="text-xl font-bold mb-6">📝 Investigation Log</h3><div class="space-y-8" id="cf-questions"></div></div>
             </div>
         </div>
 
-        <!-- MOTH VIEW -->
         <div id="view-moth" class="hidden fade-in space-y-8">
-            <header class="border-b border-stone-200 pb-6">
-                <div class="flex items-center space-x-3 mb-2">
-                    <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded">CASE STUDY 3</span>
-                    <h2 class="text-3xl font-bold text-slate-900">Industrial Melanism</h2>
-                </div>
-                <p class="text-stone-600 max-w-4xl">Focus: Natural selection, camouflage, and evolutionary trends.</p>
-            </header>
-
+            <header class="border-b pb-6"><h2 class="text-3xl font-bold">Industrial Melanism</h2></header>
             <div class="grid lg:grid-cols-2 gap-8">
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                        <h3 class="text-lg font-semibold text-amber-800 mb-3">📈 Evolutionary Trends</h3>
-                        <p class="text-xs text-stone-500 mb-4">Correlation between soot pollution and moth phenotype.</p>
-                        <div class="chart-container">
-                            <canvas id="mothChart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-stone-100 p-4 rounded border border-stone-200 text-center">
-                            <span class="text-3xl block mb-1">⚪</span>
-                            <span class="text-xs font-bold text-stone-600">TYPICA (Light)</span>
-                        </div>
-                        <div class="bg-slate-700 p-4 rounded border border-slate-800 text-center text-white">
-                            <span class="text-3xl block mb-1">⚫</span>
-                            <span class="text-xs font-bold text-slate-300">CARBONARIA (Dark)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg border border-stone-200 shadow-inner overflow-y-auto max-h-[800px]">
-                    <h3 class="text-xl font-bold text-slate-800 mb-6">📝 Investigation Log</h3>
-                    <div class="space-y-8" id="moth-questions"></div>
-                </div>
+                <div class="bg-white p-6 rounded-lg border"><canvas id="mothChart"></canvas></div>
+                <div class="bg-white p-6 rounded-lg border shadow-inner"><h3 class="text-xl font-bold mb-6">📝 Investigation Log</h3><div class="space-y-8" id="moth-questions"></div></div>
             </div>
         </div>
-
     </main>
 
-    <footer class="bg-white border-t border-stone-200 py-6 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center text-stone-400 text-xs">
-            <p>&copy; ©ShobhikaPandey Interactive Biology GCSE Series. For educational use only.</p>
-        </div>
+    <footer class="bg-white border-t border-stone-200 py-6 mt-12 text-center text-stone-400 text-xs">
+        <p>&copy; ShobhikaPandey Interactive Biology GCSE Series. For educational use only.</p>
     </footer>
 
     <script>
         const caseData = {
-            skink: {
-                questions: [
-                    { q: "Define the term 'genotype' and identify the island skink's genotype using letters T and t.", a: "Genotype refers to the combination of alleles an organism has. The island skink has the homozygous recessive genotype 'tt'." },
-                    { q: "Define 'phenotype' and describe the island skink's phenotype.", a: "Phenotype is the physical characteristic expressed. The island skink's phenotype is a grey tail." },
-                    { q: "Identify the type of mutation shown in the Sequencing Lab.", a: "It is a substitution mutation (a point mutation) where the base T is replaced by A." },
-                    { q: "Explain how a change in the DNA base sequence can lead to a non-functional pigment protein.", a: "A change in the base sequence changes the mRNA triplet code (codon). This may lead to a different amino acid being added to the polypeptide chain, which changes the final 3D shape and function of the protein." },
-                    { q: "Suggest why some mutations do NOT change the phenotype of an organism.", a: "Some mutations are 'silent' because the genetic code is degenerate (multiple codons code for the same amino acid), or the mutation occurs in a non-coding region of the DNA." },
-                    { q: "Using the simulator, explain why the 't' allele is more common on the island than the mainland.", a: "On the island, snakes are the main predators. Grey tails provide better camouflage against the dark forest floor. Grey skinks survive better, reproduce, and pass on the 't' allele." }
-                ]
-            },
-            cf: {
-                questions: [
-                    { q: "Is cystic fibrosis caused by a dominant or recessive allele? Explain how you know.", a: "Recessive. I know because parents can be 'carriers' (Cc) without having the disorder themselves; it only appears in the homozygous recessive (cc) offspring." },
-                    { q: "Explain the term 'heterozygous'.", a: "Heterozygous means having two different alleles for a particular gene (e.g., Cc)." },
-                    { q: "Two carrier parents (Cc) have a child. Use a Punnett square to determine the probability of the child having CF.", a: "The probability is 25% (1 in 4). The possible genotypes are CC, Cc, Cc, and cc. Only 'cc' results in the disorder." },
-                    { q: "State the percentage of children from the above cross that would be carriers.", a: "50% of the children would be carriers (genotype Cc)." },
-                    { q: "A person with CF (cc) and a healthy person (CC) have children. What is the probability their child will have CF?", a: "0%. Every child will inherit a dominant 'C' from the healthy parent and a recessive 'c' from the affected parent, making them all carriers (Cc)." },
-                    { q: "Explain why CF affects both the lungs and the digestive system.", a: "The faulty protein is found in the cell membranes of both systems. It fails to transport chloride ions correctly, leading to thick, sticky mucus that blocks airways and pancreatic ducts." },
-                    { q: "Why is it impossible for a 'carrier' to exist for a dominant genetic disorder like polydactyly?", a: "In a dominant disorder, you only need one copy of the allele to express the phenotype. If you have the allele, you have the condition; there is no 'hidden' state." }
-                ]
-            },
-            moth: {
-                questions: [
-                    { q: "Describe the variation present in the moth population before the industrial revolution.", a: "There were two main varieties: the light-coloured 'typica' form and the rare dark-coloured 'carbonaria' form." },
-                    { q: "Explain why the dark moth was rare before 1850.", a: "Tree trunks were light-coloured (covered in lichen). Dark moths stood out to predators (birds) and were eaten, while light moths were camouflaged and survived." },
-                    { q: "Describe how the environment changed during the industrial revolution.", a: "Soot from factories killed the light lichen and turned the tree trunks black." },
-                    { q: "Explain the 'survival advantage' of the dark moth in polluted areas.", a: "In polluted areas, dark moths were camouflaged against the sooty trees. They were less likely to be seen and eaten by birds." },
-                    { q: "What happens after the advantageous moths survive? (The next step in natural selection).", a: "The surviving moths reproduce and pass on their advantageous alleles to the next generation." },
-                    { q: "Predict the effect of the 'Clean Air Acts' (decreased pollution) on the moth population.", a: "The light-coloured moths will increase in frequency again because they will once again have the camouflage advantage as trees become cleaner." },
-                    { q: "Evolution is a change in ____ over time. Fill the blank.", a: "Evolution is a change in the inherited characteristics (or allele frequencies) of a population over time." }
-                ]
-            }
+            skink: { questions: [{q: "Define 'genotype'.", a: "Genotype is the allele combination."}, {q: "Define 'phenotype'.", a: "Phenotype is the physical expression."}] },
+            cf: { questions: [{q: "Is CF dominant or recessive?", a: "Recessive."}, {q: "What does 'heterozygous' mean?", a: "Having two different alleles."}] },
+            moth: { questions: [{q: "Why was the dark moth rare?", a: "Light tree trunks provided camouflage for light moths."}] }
         };
 
         const app = {
-            state: {
-                currentView: 'home',
-                charts: {}
-            },
-
+            state: { charts: {} },
             init: function() {
                 this.renderQuestions();
+                this.loadSavedLogs();
                 this.initListeners();
             },
-
             navigate: function(target) {
                 document.querySelectorAll('[id^="view-"]').forEach(el => el.classList.add('hidden'));
                 document.getElementById(`view-${target}`).classList.remove('hidden');
-                
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    if (btn.dataset.target === target) {
-                        btn.classList.add('bg-stone-100', 'text-teal-700', 'ring-1', 'ring-stone-200');
-                    } else {
-                        btn.classList.remove('bg-stone-100', 'text-teal-700', 'ring-1', 'ring-stone-200');
-                    }
-                });
-
-                this.state.currentView = target;
-                if (target === 'skink') this.renderSkinkChart();
-                if (target === 'moth') this.renderMothChart();
                 window.scrollTo(0, 0);
             },
-
             renderQuestions: function() {
                 ['skink', 'cf', 'moth'].forEach(key => {
                     const container = document.getElementById(`${key}-questions`);
                     container.innerHTML = caseData[key].questions.map((item, index) => `
-                        <div class="space-y-3 pb-6 border-b border-stone-100 last:border-0">
-                            <label class="block text-sm font-bold text-slate-700">Q${index+1}: ${item.q}</label>
-                            <textarea id="input-${key}-${index}" class="w-full p-3 text-sm border border-stone-300 rounded-md bg-stone-50 focus:bg-white transition-colors" placeholder="Type your answer here..."></textarea>
-                            
-                            <div id="feedback-${key}-${index}" class="hidden p-4 bg-teal-50 border border-teal-200 rounded-md text-sm text-teal-900 italic">
-                                <span class="font-bold text-teal-800 not-italic block mb-1">Mark Scheme Answer:</span>
-                                ${item.a}
-                            </div>
-                            
-                            <button onclick="app.toggleFeedback('${key}-${index}')" class="text-[10px] font-bold text-teal-600 hover:text-teal-800 uppercase tracking-widest flex items-center">
-                                <span id="btn-text-${key}-${index}">Check Mark Scheme</span>
-                                <span class="ml-1">🔍</span>
-                            </button>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Q${index+1}: ${item.q}</label>
+                            <textarea oninput="localStorage.setItem('log-${key}-${index}', this.value)" id="input-${key}-${index}" class="w-full p-3 border rounded"></textarea>
+                            <button onclick="document.getElementById('feedback-${key}-${index}').classList.toggle('hidden')" class="text-xs text-teal-600 mt-2 font-bold">Toggle Answer</button>
+                            <div id="feedback-${key}-${index}" class="hidden mt-2 p-3 bg-teal-50 italic text-sm border border-teal-200">${item.a}</div>
                         </div>
                     `).join('');
                 });
             },
-
-            toggleFeedback: function(id) {
-                const el = document.getElementById(`feedback-${id}`);
-                const btnText = document.getElementById(`btn-text-${id}`);
-                const isHidden = el.classList.contains('hidden');
-                el.classList.toggle('hidden');
-                btnText.innerText = isHidden ? "Hide Mark Scheme" : "Check Mark Scheme";
-            },
-
-            initListeners: function() {
-                const skinkSelect = document.getElementById('skink-env-selector');
-                if(skinkSelect) skinkSelect.addEventListener('change', (e) => this.updateSkinkChart(e.target.value));
-                ['p1-genotype', 'p2-genotype'].forEach(id => {
-                    const el = document.getElementById(id);
-                    if(el) el.addEventListener('change', () => this.calcPunnett());
+            loadSavedLogs: function() {
+                document.querySelectorAll('textarea').forEach(el => {
+                    const saved = localStorage.getItem(el.id);
+                    if (saved) el.value = saved;
                 });
             },
-
-            renderSkinkChart: function() {
-                if (this.state.charts.skink) return;
-                const canvas = document.getElementById('skinkChart');
-                if(!canvas) return;
-                const ctx = canvas.getContext('2d');
-                this.state.charts.skink = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Blue Tail (T)', 'Grey Tail (t)'],
-                        datasets: [{ data: [92, 8], backgroundColor: ['#0d9488', '#94a3b8'] }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
-                });
+            downloadProgress: function() {
+                let content = "GCSE Biology Progress Logs\n\n";
+                for (let i = 0; i < localStorage.length; i++) {
+                    let key = localStorage.key(i);
+                    if (key.startsWith('log-')) content += `${key}: ${localStorage.getItem(key)}\n\n`;
+                }
+                const blob = new Blob([content], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'My_Biology_Progress.txt';
+                a.click();
             },
-
-            updateSkinkChart: function(env) {
-                const chart = this.state.charts.skink;
-                if(!chart) return;
-                chart.data.datasets[0].data = (env === 'island') ? [40, 60] : [92, 8];
-                chart.update();
-            },
-
-            renderMothChart: function() {
-                if (this.state.charts.moth) return;
-                const canvas = document.getElementById('mothChart');
-                if(!canvas) return;
-                const ctx = canvas.getContext('2d');
-                this.state.charts.moth = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['1800', '1850', '1900', '1950', '2000'],
-                        datasets: [
-                            { label: '% Dark Moths', data: [1, 20, 95, 60, 5], borderColor: '#1e293b', backgroundColor: 'rgba(30, 41, 59, 0.1)', fill: true, tension: 0.3 },
-                            { label: 'Pollution Index', data: [5, 40, 100, 50, 10], borderColor: '#f59e0b', borderDash: [5, 5], tension: 0.3 }
-                        ]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
-                });
-            },
-
             calcPunnett: function() {
-                const p1El = document.getElementById('p1-genotype');
-                const p2El = document.getElementById('p2-genotype');
-                if(!p1El || !p2El) return;
-                
-                const p1 = p1El.value.split('');
-                const p2 = p2El.value.split('');
+                const p1 = document.getElementById('p1-genotype').value.split('');
+                const p2 = document.getElementById('p2-genotype').value.split('');
                 const offspring = [p1[0]+p2[0], p1[0]+p2[1], p1[1]+p2[0], p1[1]+p2[1]].map(g => g === 'cC' ? 'Cc' : g);
                 let counts = { healthy: 0, carrier: 0, affected: 0 };
                 offspring.forEach(g => {
@@ -406,15 +173,20 @@
                     else if (g === 'Cc') counts.carrier++;
                     else if (g === 'cc') counts.affected++;
                 });
-                document.getElementById('res-healthy').innerText = (counts.healthy / 4 * 100) + '%';
-                document.getElementById('res-carrier').innerText = (counts.carrier / 4 * 100) + '%';
-                document.getElementById('res-affected').innerText = (counts.affected / 4 * 100) + '%';
+                document.getElementById('res-healthy').innerText = (counts.healthy/4*100) + '%';
+                document.getElementById('res-carrier').innerText = (counts.carrier/4*100) + '%';
+                document.getElementById('res-affected').innerText = (counts.affected/4*100) + '%';
+                ['box-1', 'box-2', 'box-3', 'box-4'].forEach((id, i) => document.getElementById(id).innerText = offspring[i]);
+            },
+            initListeners: function() {
+                ['p1-genotype', 'p2-genotype'].forEach(id => document.getElementById(id)?.addEventListener('change', () => this.calcPunnett()));
             }
         };
-
         document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 </body>
-
 </html>
+
+
+
 
